@@ -1,0 +1,3 @@
+export const QUOTE_REQUEST = 'QUOTE_REQUEST'
+
+export const QUOTE_FULFILLED = 'QUOTE_FULFILLED'

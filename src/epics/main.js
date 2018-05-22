@@ -1,10 +1,13 @@
 import 'rxjs'
 import { Observable } from 'rxjs/Observable'
-import { quoteFulfilled } from '../actions'
+import { quoteFulfilled, quoteError } from '../actions'
 import { randomQuote } from '../helpers/requests'
 
-const { of, concat } = Observable
+const { of, concat, fromPromise } = Observable
 
 export const quoteRequestEpic = action$ => action$.ofType('QUOTE_REQUEST')
-	.switchMap(() => randomQuote())
-	.map(quoteFulfilled)
+	.switchMap(action => 
+		fromPromise(randomQuote())
+		.map(quoteFulfilled)
+		.catch(err => of(quoteError(err)))
+	)

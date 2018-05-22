@@ -1,21 +1,30 @@
+import * as actionTypes from '../actions/types'
+import { fetchStatusConst } from '../constants'
 import { inc } from 'ramda'
 
 const initialState = {
-	fetchStatus: 'NONE',					// FETCHING, FETCHED
+	fetchStatus: fetchStatusConst.NONE,
 	quote: '',
-	author: ''
+	author: '',
 }
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 
-		case 'QUOTE_REQUEST': {
-			return {...state, fetchStatus: 'FETCHING'}
+		case actionTypes.QUOTE_REQUEST: {
+			const fetchStatus = fetchStatusConst.FETCHING
+			return {...state, fetchStatus}
 		}
 		
-		case 'QUOTE_FULFILLED': {
+		case actionTypes.QUOTE_FULFILLED: {
 			const { quote, author } = action.payload.response
-			return {...state, quote, author, fetchStatus: 'FETCHED'}
+			const fetchStatus = fetchStatusConst.FETCHED
+			return {...state, quote, author, fetchStatus}
+		}
+
+		case actionTypes.QUOTE_ERROR: {
+			const fetchStatus = fetchStatusConst.ERROR
+			return {...state, fetchStatus}
 		}
 
 		default:

@@ -8,3 +8,5 @@ export const quoteRequest = () 					=> ac(types.QUOTE_REQUEST)
 
 export const quoteFulfilled = (response) 		=> ac(types.QUOTE_FULFILLED, { response })
 
+export const quoteError = (err)					=> ac(types.QUOTE_ERROR, { err })
+

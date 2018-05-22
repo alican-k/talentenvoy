@@ -1,17 +1,11 @@
 import * as actionTypes from '../../actions/types'
 import reducer from '../main'
-
-const initialState = {
-	fetchStatus: 'NONE',
-	quote: '',
-	author: ''
-}
-
-const quotePayload = {response: {author: 'an author', quote: 'quote of that author'}}
+import { initialState, quotePayload } from '../../dump'
 
 describe('main reducer', () => {
 	it('should return the initial state', () => {
-		expect(reducer(undefined, {})).toEqual(initialState)
+		expect(reducer(undefined, {}))
+			.toEqual(initialState)
 	})
 
 	it('should handle ' + actionTypes.QUOTE_REQUEST + ' action', () => {

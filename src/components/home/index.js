@@ -2,8 +2,8 @@ import React from 'react'
 import { ActivityIndicator, Button, Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { compose, branch, withHandlers, renderComponent } from 'recompose'
-import { mainInObj, isFetchStatusNone, isFetchStatusFetching, isFetchStatusError } from '../helpers/state'
-import { quoteRequest } from '../actions'
+import { mainInObj, isFetchStatusNone, isFetchStatusFetching, isFetchStatusError } from '../../helpers/state'
+import { quoteRequest } from '../../actions'
 import ForceCrash from './ForceCrash'
 
 const None = ({ _quoteRequest }) => <Button title='Fetch a Random Quote' onPress={_quoteRequest} />
@@ -31,47 +31,13 @@ const FetchStatusBranch = compose(
 	branch(isFetchStatusError, renderComponent(Error)),	
 )(Fetched)
 
-const Root = () => 
+const HomeScreen = () => 
 	<View style={styles.container}>
 		<FetchStatusBranch />
 		<ForceCrash />
 	</View>
 
-
-
-
-export default Root
-
-
-// const Root = ({ main, _quoteRequest }) => 
-// 	<View style={styles.container}>
-
-// 		{ main.fetchStatus === 'NONE' &&
-// 			<Button title='Fetch a Random Quote' onPress={_quoteRequest} /> }
-
-// 		{ main.fetchStatus === 'FETCHING' &&
-// 			<ActivityIndicator /> }
-		
-// 		{ main.fetchStatus === 'FETCHED' &&
-// 			<View style={styles.container}>
-// 				<Button title='Refresh Quote' onPress={_quoteRequest} />
-// 				<Text style={styles.quote}>{main.quote}</Text>
-// 				<Text style={styles.author}>{main.author}</Text>
-// 			</View> }
-
-// 		{ main.fetchStatus === 'ERROR' &&
-// 			<View style={styles.container}>
-// 				<Button title='Refresh Quote' onPress={_quoteRequest} />
-// 				<Text style={styles.quote}>Error occured, try again..</Text>
-// 			</View> }
-// 	</View>
-
-// export default compose(
-// 	connect(mainInObj, { quoteRequest }),
-// 	withHandlers({
-// 		_quoteRequest: ({ quoteRequest }) => () => quoteRequest()
-// 	}),
-// )(Root)
+export default HomeScreen
 
 const styles = StyleSheet.create({
 	container: {

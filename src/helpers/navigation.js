@@ -1,8 +1,5 @@
 import { NavigationActions } from 'react-navigation'
 
-import { YellowBox } from 'react-native'
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
-
 let _navigation
 
 export const setNavigation = navigation => { _navigation = navigation }

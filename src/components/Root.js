@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { compose, branch, withHandlers, renderComponent } from 'recompose'
 import { mainInObj, isFetchStatusNone, isFetchStatusFetching, isFetchStatusError } from '../helpers/state'
 import { quoteRequest } from '../actions'
+import ForceCrash from './ForceCrash'
 
 const None = ({ _quoteRequest }) => <Button title='Fetch a Random Quote' onPress={_quoteRequest} />
 
@@ -33,6 +34,7 @@ const FetchStatusBranch = compose(
 const Root = () => 
 	<View style={styles.container}>
 		<FetchStatusBranch />
+		<ForceCrash />
 	</View>
 
 

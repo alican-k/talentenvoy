@@ -2,6 +2,7 @@ import 'rxjs'
 import { Observable } from 'rxjs/Observable'
 import { quoteFulfilled, quoteError } from '../actions'
 import { randomQuote } from '../helpers/requests'
+import fir from 'react-native-firebase'
 
 const { of, concat, fromPromise } = Observable
 

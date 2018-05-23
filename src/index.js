@@ -5,6 +5,9 @@ import Root from './components/Root'
 import { setNavigation } from './helpers/navigation'
 import Navigator from './Navigator'
 
+import { YellowBox } from 'react-native'
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
+
 const Index = () =>
 	<Provider store={store}>
 		<Navigator ref={ref => setNavigation(ref)} />

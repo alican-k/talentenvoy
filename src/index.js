@@ -6,6 +6,8 @@ import Navigator from './Navigator'
 
 import { YellowBox } from 'react-native'
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
+console.disableYellowBox = true;
+
 
 const Index = () =>
 	<Provider store={store}>

@@ -2,15 +2,19 @@ import 'rxjs'
 import { Observable } from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
 import { startup } from '../actions'
-import { startupAuthEpic } from './auth'
+import { authStateEpic, signUpEpic, loggedInEpic, logOutEpic, logInEpic, resetEpic as resetPasswordEpic, 
+	authErrorEpic, sentEpic } from './auth'
 import { navigateEpic, resetEpic, backEpic } from './navigation'
 import { quoteRequestEpic } from './main'
 
-const startupEpic = action$ => Observable.of(startup()).delay(500)
+const startupEpic = () => Observable.of(startup()).delay(50)
 
 export default combineEpics(
 	startupEpic,
-	startupAuthEpic,
+
+	authStateEpic, signUpEpic, loggedInEpic, logOutEpic, logInEpic, resetPasswordEpic, authErrorEpic, sentEpic,
+	
 	navigateEpic, resetEpic, backEpic,
+	
 	quoteRequestEpic
 )

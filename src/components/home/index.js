@@ -5,6 +5,7 @@ import { compose, branch, withHandlers, renderComponent } from 'recompose'
 import { mainInObj, isFetchStatusNone, isFetchStatusFetching, isFetchStatusError } from '../../helpers/state'
 import { quoteRequest } from '../../actions'
 import ForceCrash from './ForceCrash'
+import LogOut from './LogOut'
 
 const None = ({ _quoteRequest }) => <Button title='Fetch a Random Quote' onPress={_quoteRequest} />
 
@@ -35,6 +36,7 @@ const HomeScreen = () =>
 	<View style={styles.container}>
 		<FetchStatusBranch />
 		<ForceCrash />
+		<LogOut />
 	</View>
 
 export default HomeScreen

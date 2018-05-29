@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 
 let _navigation
 
@@ -16,7 +16,7 @@ export const navigate = (routeName, params = {}) => {
 
 export const reset = (routeName, params = {}) => {
 	_navigation.dispatch(
-		NavigationActions.reset({
+		StackActions.reset({
 			index: 0,
 			actions: [
 				NavigationActions.navigate({

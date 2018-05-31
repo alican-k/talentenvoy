@@ -3,6 +3,7 @@ import { fetchStatusConst } from '../constants'
 import { inc } from 'ramda'
 
 const initialState = {
+	me: null,
 	fetchStatus: fetchStatusConst.NONE,
 	quote: '',
 	author: '',
@@ -10,6 +11,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.USER_DATA_LOADED: {
+			const { name } = action.payload
+			return {...state, me: { name }}
+		}
 
 		case actionTypes.QUOTE_REQUEST: {
 			const fetchStatus = fetchStatusConst.FETCHING
@@ -25,6 +30,10 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.QUOTE_ERROR: {
 			const fetchStatus = fetchStatusConst.ERROR
 			return {...state, fetchStatus}
+		}
+
+		case actionTypes.LOG_OUT: {
+			return {...state, me: null}
 		}
 
 		default:

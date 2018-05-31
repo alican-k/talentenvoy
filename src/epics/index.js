@@ -2,10 +2,10 @@ import 'rxjs'
 import { Observable } from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
 import { startup } from '../actions'
-import { authStateEpic, signUpEpic, loggedInEpic, logOutEpic, logInEpic, resetEpic as resetPasswordEpic, 
+import { authStateEpic, signUpEpic, logOutEpic, logInEpic, resetEpic as resetPasswordEpic, 
 	authErrorEpic, sentEpic } from './auth'
 import { navigateEpic, resetEpic, backEpic } from './navigation'
-import { quoteRequestEpic } from './main'
+import { quoteRequestEpic, loggedInEpic } from './main'
 
 const startupEpic = () => Observable.of(startup()).delay(50)
 

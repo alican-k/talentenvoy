@@ -21,6 +21,8 @@ export const routeNavigate 	= (routeName, params = {}) 		=> ac(types.ROUTE_NAVIG
 export const routeReset 	= (routeName, params = {}) 		=> ac(types.ROUTE_RESET, {routeName, params})
 export const routeBack 		= (routeName) 					=> ac(types.ROUTE_BACK, {routeName})
 
+export const userDataLoaded		= (data)					=> ac(types.USER_DATA_LOADED, { ...data })
+
 export const quoteRequest 	= () 					=> ac(types.QUOTE_REQUEST)
 export const quoteFulfilled = (response) 			=> ac(types.QUOTE_FULFILLED, { response })
 export const quoteError 	= (err)					=> ac(types.QUOTE_ERROR, { err })

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { compose, branch, withHandlers, renderComponent } from 'recompose'
 import { mainInObj, isFetchStatusNone, isFetchStatusFetching, isFetchStatusError } from '../../helpers/state'
 import { quoteRequest } from '../../actions'
+import Name from './Name'
 import ForceCrash from './ForceCrash'
 import LogOut from './LogOut'
 
@@ -34,6 +35,7 @@ const FetchStatusBranch = compose(
 
 const HomeScreen = () => 
 	<View style={styles.container}>
+		<Name />
 		<FetchStatusBranch />
 		<ForceCrash />
 		<LogOut />

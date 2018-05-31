@@ -30,3 +30,6 @@ export const isFetchStatusNone = fetchStatusPathEq(fetchStatusConst.NONE)
 export const isFetchStatusFetching = fetchStatusPathEq(fetchStatusConst.FETCHING)
 export const isFetchStatusFetched = fetchStatusPathEq(fetchStatusConst.FETCHED)
 export const isFetchStatusError = fetchStatusPathEq(fetchStatusConst.ERROR)
+
+export const getMe = path(['main', 'me'])
+export const meInObj = compose(objOf('me'), getMe)

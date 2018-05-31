@@ -21,9 +21,6 @@ export const signUpEpic = action$ => action$.ofType(actionTypes.SIGN_UP)
 			.catch(err => of(authError(err)))
 	})
 
-export const loggedInEpic = action$ => action$.ofType(actionTypes.LOGGED_IN)
-	.mapTo(routeReset('Home'))
-
 export const logOutEpic = action$ => action$.ofType(actionTypes.LOG_OUT)
 	.switchMap(() => logOut())
 	.mapTo(routeReset('Auth'))

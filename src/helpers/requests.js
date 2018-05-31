@@ -47,5 +47,7 @@ export const reset = (email) =>
 	auth.sendPasswordResetEmail(email)
 
 export const loadUserData = () =>
-	db.collection('Users').doc(getUid()).get()
+	db.collection('Users').doc(getUid()).get().then(documentCallback)
+
+const documentCallback = doc => doc.data()
 	

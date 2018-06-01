@@ -47,8 +47,9 @@ const reducer = (state = initialState, action) => {
 		}
 
 		case actionTypes.AUTH_ERROR: {
-			const description = action.payload.error.userInfo.NSLocalizedDescription
-			const reason = action.payload.error.userInfo.NSLocalizedFailureReason
+			const { error } = action.payload
+			const description = error.description || error.userInfo.NSLocalizedDescription
+			const reason = error.reason || error.userInfo.NSLocalizedFailureReason
 			return { ...state, error: {reason, description}, operating: false }
 		}
 		

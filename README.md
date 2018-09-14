@@ -1,2 +1,8 @@
-# react-native-starter
-A functional, reactive starter project for react-native. (firebase, redux, redux-observables and functional utilities like ramda, recompose )
+# Install
+
+```
+1. git clone https://github.com/alican-k/talentenvoy.git
+2. cd talentenvoy
+3. npm install
+4. react-native run-android
+```

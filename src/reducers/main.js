@@ -1,12 +1,12 @@
 import * as actionTypes from '../actions/types'
 import { fetchStatusConst } from '../constants'
-import { inc } from 'ramda'
+import { __, always, concat, descend, evolve, prop, sort } from 'ramda'
 
 const initialState = {
-	me: null,
-	fetchStatus: fetchStatusConst.NONE,
-	quote: '',
-	author: '',
+	me					: null,
+	token				: null,
+	recruiters			: [],
+	displayingId		: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,20 +16,21 @@ const reducer = (state = initialState, action) => {
 			return {...state, me: { name }}
 		}
 
-		case actionTypes.QUOTE_REQUEST: {
-			const fetchStatus = fetchStatusConst.FETCHING
-			return {...state, fetchStatus}
-		}
-		
-		case actionTypes.QUOTE_FULFILLED: {
-			const { quote, author } = action.payload.response
-			const fetchStatus = fetchStatusConst.FETCHED
-			return {...state, quote, author, fetchStatus}
+		case actionTypes.TOKEN_RECEIVED: {
+			const { token } = action.payload
+			return {...state, token}
 		}
 
-		case actionTypes.QUOTE_ERROR: {
-			const fetchStatus = fetchStatusConst.ERROR
-			return {...state, fetchStatus}
+		case actionTypes.RECRUITERS_ADDED: {
+			const { recruiters } = action.payload 	//sort(descend(prop('id')), action.payload.recruiters)
+			return evolve(__, state)({
+				recruiters: concat(recruiters)
+			})
+		}
+
+		case actionTypes.DISPLAY_RECRUITER: {
+			const displayingId = action.payload.id
+			return {...state, displayingId}
 		}
 
 		case actionTypes.LOG_OUT: {

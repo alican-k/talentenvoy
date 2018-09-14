@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "953582384930",
-    "firebase_url": "https://starter-bd487.firebaseio.com",
-    "project_id": "starter-bd487",
-    "storage_bucket": "starter-bd487.appspot.com"
+    "project_number": "880235271297",
+    "firebase_url": "https://talentenvoydeneme.firebaseio.com",
+    "project_id": "talentenvoydeneme",
+    "storage_bucket": "talentenvoydeneme.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:953582384930:android:76463e9b7df53151",
+        "mobilesdk_app_id": "1:880235271297:android:76463e9b7df53151",
         "android_client_info": {
           "package_name": "com.starter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "953582384930-db494levli8ji253rcq16h27cf39stfl.apps.googleusercontent.com",
+          "client_id": "880235271297-4sa5vi8fbhqagshem74pea2lkus1gqhs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBLY0gkVbkxBjwh4QfNBRSZB3tvJnLmNKk"
+          "current_key": "AIzaSyAuBdKLeJ2r12JdH7wE3FLwdYEsimUvhxI"
         }
       ],
       "services": {

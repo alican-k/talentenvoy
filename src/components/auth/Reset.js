@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose, withHandlers, withProps } from 'recompose'
 import { CustomButton } from './FromElements'
 import { displayAuth, reset } from '../../actions'
-import { authInObj, operatingInObj } from '../../helpers/state'
+import { auth } from '../../helpers/state'
 import { simpleStateHandlers } from '../../helpers/utils'
 import { authScreenConst } from '../../constants'
 
@@ -41,13 +41,13 @@ const Reset = ({ operating, email, setEmail, _reset, _toLogIn }) =>
 	</View>
 
 export default compose(
-	connect(authInObj, { reset, displayAuth }),
+	connect(auth.self, { reset, displayAuth }),
 	simpleStateHandlers({ email: ''}),
 	withHandlers({
 		_reset			: ({ email, reset }) 	=> () => reset(email),
 		_toLogIn		: ({ displayAuth }) 	=> () => displayAuth(authScreenConst.LOG_IN),		
 	}),
-	withProps(operatingInObj),
+	withProps(auth.pick(['operating'])),
 )(Reset)
 
 const styles = StyleSheet.create({

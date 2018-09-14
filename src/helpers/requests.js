@@ -1,12 +1,7 @@
 import 'rxjs'
 import { Observable } from 'rxjs/Observable'
 import firebase from 'react-native-firebase'
-
-const url = 'https://talaikis.com/api/quotes/random/'
-
-export const randomQuote = () => 
-	fetch(url).then(res => res.json())
-
+import { assoc } from 'ramda'
 
 /* FIREBASE */
 
@@ -48,6 +43,22 @@ export const reset = (email) =>
 
 export const loadUserData = () =>
 	db.collection('Users').doc(getUid()).get().then(documentCallback)
+
+export const saveToken = (uid, token) =>
+	db.collection('Notifications').doc('tokens').set(assoc(uid, token, {}))
+
+export const recruiterChange$ = () => Observable.create(observer => {
+	db.collection('Recruiters').onSnapshot(snapshot => {
+		const arr = []
+		snapshot.docChanges.forEach(change => {
+			arr.push({
+				id: change.doc.id,
+				...change.doc.data()
+			})
+		})
+		observer.next(arr)
+	})
+})
 
 const documentCallback = doc => doc.data()
 	

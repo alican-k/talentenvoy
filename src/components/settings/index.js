@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose, withHandlers } from 'recompose'
 import { logOut } from '../../actions'
 	
-const LogOut = ({ _logOut }) =>
+const Settings = ({ _logOut }) =>
 	<View style={styles.container}>
 		<Button title='Log out' onPress={_logOut} />
 	</View>
@@ -14,10 +14,13 @@ export default compose(
 	withHandlers({
 		_logOut: ({ logOut }) => () => logOut()
 	})
-)(LogOut)
+)(Settings)
 	
 const styles = StyleSheet.create({
 	container: {
-		
+		flex: 1,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 })

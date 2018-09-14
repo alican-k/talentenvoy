@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose, withHandlers, withProps } from 'recompose'
 import { CustomButton } from './FromElements'
 import { signUp, displayAuth } from '../../actions'
-import { authInObj, operatingInObj } from '../../helpers/state'
+import { auth } from '../../helpers/state'
 import { simpleStateHandlers } from '../../helpers/utils'
 import { authScreenConst } from '../../constants'
 
@@ -42,13 +42,13 @@ const SignUp = ({ operating, setName, setEmail, setPassword, _signUp, _toLogIn }
 	</View>
 
 export default compose(
-	connect(authInObj, {signUp, displayAuth}),
+	connect(auth.self, {signUp, displayAuth}),
 	simpleStateHandlers({name: '', email: '', password: ''}),
 	withHandlers({
 		_signUp		: ({ name, email, password, signUp }) => () => signUp(name, email, password),
 		_toLogIn	: ({ displayAuth }) 			=> () => displayAuth(authScreenConst.LOG_IN),
 	}),
-	withProps(operatingInObj)
+	withProps(auth.pick(['operating']))
 )(SignUp)
 
 const styles = StyleSheet.create({

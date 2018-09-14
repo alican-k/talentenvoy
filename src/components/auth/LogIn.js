@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose, branch, withHandlers, renderComponent, withProps } from 'recompose'
 import { CustomButton } from './FromElements'
 import { logIn, displayAuth } from '../../actions'
-import { authInObj, isInitializing, operatingInObj } from '../../helpers/state'
+import { auth } from '../../helpers/state'
 import { simpleStateHandlers } from '../../helpers/utils'
 import { authScreenConst } from '../../constants'
 
@@ -40,15 +40,15 @@ const Login = ({ operating, setEmail, setPassword, _logIn, _toSignUp, _toForgot 
 	</View>
 
 export default compose(
-	connect(authInObj, {logIn, displayAuth}),
-	branch(isInitializing, renderComponent(Initializing)),
+	connect(auth.self, {logIn, displayAuth}),
+	branch(auth.initializing, renderComponent(Initializing)),
 	simpleStateHandlers({email: '', password: ''}),
 	withHandlers({
 		_logIn		: ({ email, password, logIn }) 	=> () => logIn(email, password),
 		_toSignUp	: ({ displayAuth }) 			=> () => displayAuth(authScreenConst.SIGN_UP),
 		_toForgot	: ({ displayAuth }) 			=> () => displayAuth(authScreenConst.RESET)
 	}),
-	withProps(operatingInObj)
+	withProps(auth.pick(['operating']))
 )(Login)
 
 

@@ -1,8 +1,16 @@
 import { 
-	compose, assoc, concat, join, juxt, head, mapObjIndexed, merge,
-	reduce, tail, toUpper, values 
+	__, always, assocPath,
+	compose, converge, assoc, concat, join, juxt, head, identity, is, map, mapObjIndexed, merge,
+	path, reduce, tail, toUpper, values, unapply
 } from 'ramda'
 import { withStateHandlers } from 'recompose'
+
+const paramsToArray = unapply(identity)
+const defaultToFunction = i => is(Number, i) || is(String, i) ? always(i) : i
+
+const flexPicker = arr => converge(paramsToArray, map(defaultToFunction, arr))
+export const flexPath = arr => converge(path, [flexPicker(arr), identity])
+export const flexAssoc = arr => val => converge(assocPath(__, val), [flexPicker(arr), identity])
 
 
 export const simpleStateHandlers = (initials) => {

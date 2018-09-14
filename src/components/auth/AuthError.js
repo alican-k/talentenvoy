@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { compose, branch, renderNothing, withHandlers } from 'recompose'
 import { closeAuthError } from '../../actions'
-import { authInObj, isNotAuthError } from '../../helpers/state'
+import { auth } from '../../helpers/state'
 
 const AuthError = ({ auth, _closeAuthError }) =>
 	<View style={styles.container}>
@@ -19,8 +19,8 @@ const AuthError = ({ auth, _closeAuthError }) =>
 	</View>
 	
 export default compose(
-	connect(authInObj, { closeAuthError }),
-	branch(isNotAuthError, renderNothing),
+	connect(auth.self, { closeAuthError }),
+	branch(auth.isNotAuthError, renderNothing),
 	withHandlers({
 		_closeAuthError: ({ closeAuthError }) => () => closeAuthError()
 	})

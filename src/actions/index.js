@@ -23,7 +23,9 @@ export const routeBack 		= (routeName) 					=> ac(types.ROUTE_BACK, {routeName})
 
 export const userDataLoaded		= (data)					=> ac(types.USER_DATA_LOADED, { ...data })
 
-export const quoteRequest 	= () 					=> ac(types.QUOTE_REQUEST)
-export const quoteFulfilled = (response) 			=> ac(types.QUOTE_FULFILLED, { response })
-export const quoteError 	= (err)					=> ac(types.QUOTE_ERROR, { err })
+export const notificationReceived 	= (notification)		=> ac(types.NOTIFICATION_RECEIVED, { notification })
+export const tokenReceived 			= (token)				=> ac(types.TOKEN_RECEIVED, { token })
 
+export const recruitersAdded		= (recruiters)			=> ac(types.RECRUITERS_ADDED, { recruiters})
+
+export const displayRecruiter		= (id)					=> ac(types.DISPLAY_RECRUITER, { id })

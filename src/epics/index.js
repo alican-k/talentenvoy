@@ -5,7 +5,8 @@ import { startup } from '../actions'
 import { authStateEpic, signUpEpic, logOutEpic, logInEpic, resetEpic as resetPasswordEpic, 
 	authErrorEpic, sentEpic } from './auth'
 import { navigateEpic, resetEpic, backEpic } from './navigation'
-import { quoteRequestEpic, loggedInEpic } from './main'
+import { loggedInEpic, displayRecruiterEpic } from './main'
+import { notificationsEpic, saveTokenEpic } from './notification'
 
 const startupEpic = () => Observable.of(startup()).delay(50)
 
@@ -15,6 +16,8 @@ export default combineEpics(
 	authStateEpic, signUpEpic, loggedInEpic, logOutEpic, logInEpic, resetPasswordEpic, authErrorEpic, sentEpic,
 	
 	navigateEpic, resetEpic, backEpic,
-	
-	quoteRequestEpic
+
+	notificationsEpic, saveTokenEpic, 
+
+	displayRecruiterEpic
 )

@@ -1,5 +1,7 @@
-import { compose, isEmpty, isNil, objOf, path, pathEq, pick } from 'ramda'
+import { call, compose, converge, equals, isEmpty, isNil, find, objOf, path, pathEq, pick, prop, propEq } from 'ramda'
 import { fetchStatusConst, authStatusConst } from '../constants'
+import createAltState from 'redux-state-getter'
+import { flexPath } from './utils'
 
 const log = title => x => {
 	console.log(title, ' :', x)
@@ -8,28 +10,29 @@ const log = title => x => {
 
 /* AUTH */
 
-export const authInObj = pick(['auth'])
+const screen 			= prop('screen')
+const authStatus		= prop('authStatus')
+const initializing		= compose(equals(authStatusConst.INITIALIZING), authStatus)
+const error				= prop('error')
+const isNotAuthError 	= compose(isNil, error)
+const operating			= prop('operating')
 
-const getScreen = path(['auth', 'screen'])
-export const screenInObj = compose(objOf('screen'), getScreen)
+export const auth		= createAltState('auth', {screen, authStatus, initializing, error, isNotAuthError, operating})
 
-const authStatusPathEq = pathEq(['auth', 'authStatus'])
-export const isInitializing = authStatusPathEq(authStatusConst.INITIALIZING)
-
-export const isNotAuthError = compose(isNil, path(['auth', 'error']))
-
-export const getOperating = path(['auth', 'operating'])
-export const operatingInObj = compose(objOf('operating'), getOperating)
 
 /* MAIN */
 
-export const mainInObj = pick(['main'])
+const findById 			= (id, recruiters) => find(propEq('id', id))(recruiters)
 
-const fetchStatusPathEq = pathEq(['main', 'fetchStatus'])
-export const isFetchStatusNone = fetchStatusPathEq(fetchStatusConst.NONE)
-export const isFetchStatusFetching = fetchStatusPathEq(fetchStatusConst.FETCHING)
-export const isFetchStatusFetched = fetchStatusPathEq(fetchStatusConst.FETCHED)
-export const isFetchStatusError = fetchStatusPathEq(fetchStatusConst.ERROR)
+const me				= prop('me')
+const recruiters		= prop('recruiters')
+const displayingId		= prop('displayingId')
+const recruiter			= converge(findById, [displayingId, recruiters])
 
-export const getMe = path(['main', 'me'])
-export const meInObj = compose(objOf('me'), getMe)
+export const main		= createAltState('main', { me, recruiters, recruiter })
+
+
+
+
+//const findById 			= compose(find, propEq('id'), displayingId)
+// const recruiter			= converge(call, [findById, recruiters])

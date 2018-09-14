@@ -7,7 +7,7 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Reset from './Reset'
 import Sent from './Sent'
-import { authInObj, screenInObj } from '../../helpers/state'
+import { auth } from '../../helpers/state'
 import { authScreenConst } from '../../constants'
 import { logo } from '../../assets'
 
@@ -25,8 +25,8 @@ const AuthScreen = ({ screen }) =>
 	</ScrollView>
 
 export default compose(
-	connect(authInObj, null),
-	withProps(screenInObj)
+	connect(auth.self, null),
+	withProps(auth.pick(['screen']))
 )(AuthScreen)
 
 const styles = StyleSheet.create({
